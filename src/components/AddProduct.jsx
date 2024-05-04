@@ -1,18 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/addProducts/action";
-import { useState } from "react";
+import { addProduct } from "../redux/products/action";
+import { useForm } from "react-hook-form";
 
 const AddProduct = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   const dispatch = useDispatch();
-  const [productData, setProductData] = useState([]);
-  const inputChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setProductData({ ...productData, [name]: value });
-  };
-  const addProductsHandler = (e) => {
-    e.preventDefault();
-    dispatch(addProduct(productData));
+  const onSubmit = (data) => {
+    dispatch(addProduct(data));
   };
 
   return (
@@ -21,7 +22,7 @@ const AddProduct = () => {
       <form
         className="space-y-4 text-[#534F4F]"
         id="akh-addProductForm"
-        onSubmit={addProductsHandler}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="space-y-2">
           <label htmlFor="akh-inputName">Product Name</label>
@@ -29,10 +30,8 @@ const AddProduct = () => {
             className="addProductInput"
             id="akh-inputName"
             type="text"
-            required
-            onChange={inputChangeHandler}
             name="title"
-            value={productData.title}
+            {...register("name", { required: true })}
           />
         </div>
         <div className="space-y-2">
@@ -41,10 +40,8 @@ const AddProduct = () => {
             className="addProductInput"
             id="akh-inputCategory"
             type="text"
-            required
-            onChange={inputChangeHandler}
             name="category"
-            value={productData.category}
+            {...register("category", { required: true })}
           />
         </div>
         <div className="space-y-2">
@@ -53,10 +50,8 @@ const AddProduct = () => {
             className="addProductInput"
             id="akh-inputImage"
             type="text"
-            required
-            onChange={inputChangeHandler}
             name="productImage"
-            value={productData.productImage}
+            {...register("productImage", { required: true })}
           />
         </div>
         <div className="grid grid-cols-2 gap-8 pb-4">
@@ -66,10 +61,8 @@ const AddProduct = () => {
               className="addProductInput"
               type="number"
               id="akh-inputPrice"
-              required
-              onChange={inputChangeHandler}
               name="price"
-              value={productData.price}
+              {...register("price", { required: true })}
             />
           </div>
           <div className="space-y-2">
@@ -78,10 +71,8 @@ const AddProduct = () => {
               className="addProductInput"
               type="number"
               id="akh-inputQuantity"
-              required
               name="quantity"
-              onChange={inputChangeHandler}
-              value={productData.quantity}
+              {...register("quantity", { required: true })}
             />
           </div>
         </div>

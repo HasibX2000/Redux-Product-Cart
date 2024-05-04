@@ -1,13 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addToCartHandler } from "../redux/addToCart/action";
 
 const ProductCard = ({ productData }) => {
   const { title, productImage, price, quantity, category } = productData;
-  const dispatch = useDispatch();
-  const addToCartBtb = (productData) => {
-    dispatch(addToCartHandler(productData));
-  };
 
   return (
     <div className="akh-productCard">
