@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { addToCart } from "../redux/carts/action";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductCard = ({ productData }) => {
   const { title, productImage, price, quantity, category } = productData;
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(productData));
+  };
 
   return (
     <div className="akh-productCard">
@@ -18,8 +25,9 @@ const ProductCard = ({ productData }) => {
           </p>
         </div>
         <button
-          onClick={() => addToCartBtb(productData)}
+          onClick={handleAddToCart}
           className="akh-btnAddToCart"
+          disabled={quantity <= 0 ? true : false}
         >
           Add To Cart
         </button>

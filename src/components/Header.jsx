@@ -2,8 +2,14 @@ import React from "react";
 import Logo from "../assets/logo.png";
 import cartIcon from "../assets/carticon.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const cartItems = useSelector((state) => state.carts);
+  const totalItems = cartItems.reduce(
+    (total, product) => (total += product.quantity),
+    0
+  );
   return (
     <nav className="bg-[#171C2A] py-4">
       <div className="navBar">
@@ -18,7 +24,7 @@ const Header = () => {
           </Link>
           <Link to="/cart" className="navCart" id="akh-cart">
             <img src={cartIcon} alt="cartIcon" className="w-5" />
-            <span id="akh-totalCart">0</span>
+            <span id="akh-totalCart">{totalItems}</span>
           </Link>
         </div>
       </div>

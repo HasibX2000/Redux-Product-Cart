@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../redux/products/action";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { addProducts } from "../redux/products/action";
 
 const AddProduct = () => {
   const {
@@ -13,7 +13,7 @@ const AddProduct = () => {
 
   const dispatch = useDispatch();
   const onSubmit = (data) => {
-    dispatch(addProduct(data));
+    dispatch(addProducts(data));
   };
 
   return (

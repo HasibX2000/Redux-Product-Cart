@@ -3,11 +3,10 @@ import ProductCard from "./ProductCard";
 import { useSelector } from "react-redux";
 
 const ProductGallery = () => {
-  const productslist = useSelector((state) => state.products);
-  console.log(productslist);
+  const productsList = useSelector((state) => state.products);
   return (
     <div className="productContainer md:w-2/3" id="akh-productContainer">
-      {productslist.map((product) => (
+      {productsList.map((product) => (
         <ProductCard key={product.id} productData={product} />
       ))}
     </div>

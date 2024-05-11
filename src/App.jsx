@@ -5,6 +5,7 @@ import CartPage from "./Pages/CartPage.jsx";
 import ErrorPage from "./Pages/ErrorPage.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Header from "./components/Header.jsx";
+import OrderConfirmation from "./Pages/OrderConfirmation.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,19 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header /> <Homepage />
+      </>
+    ),
+    errorElement: (
+      <>
+        <Header /> <ErrorPage />
+      </>
+    ),
+  },
+  {
+    path: "/order",
+    element: (
+      <>
+        <Header /> <OrderConfirmation />
       </>
     ),
     errorElement: (
